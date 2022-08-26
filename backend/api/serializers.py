@@ -15,8 +15,10 @@ User = get_user_model()
 class UserRegistrationSerializer(UserCreateSerializer):
     class Meta(UserCreateSerializer.Meta):
         model = User
-        fields = ('email', 'id', 'username', 'first_name',
-                  'last_name', 'password')
+        fields = (
+            'email', 'id', 'username', 'first_name',
+            'last_name', 'password'
+        )
 
 
 class UserSerializer(serializers.ModelSerializer):
@@ -145,8 +147,10 @@ class RecipeSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Recipe
-        fields = ('id', 'author', 'name', 'text', 'ingredients', 'tags',
-                  'cooking_time', 'image')
+        fields = (
+            'id', 'author', 'name', 'text', 'ingredients', 'tags',
+            'cooking_time', 'image'
+        )
         read_only_fields = ('author',)
 
     def validate(self, data):

@@ -3,12 +3,15 @@ from django.db import models
 
 
 class User(AbstractUser):
-
     email = models.EmailField(
         'email',
         max_length=254,
         unique=True
     )
+
+    class Meta:
+        verbose_name = 'Пользователь'
+        verbose_name_plural = 'Пользователи'
 
 
 class SubscribeAuthor(models.Model):
@@ -24,3 +27,7 @@ class SubscribeAuthor(models.Model):
         on_delete=models.CASCADE,
         verbose_name='Автор',
     )
+
+    class Meta:
+        verbose_name = 'Подписка'
+        verbose_name_plural = 'Подписки'

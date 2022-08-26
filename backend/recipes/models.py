@@ -1,7 +1,8 @@
+from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.core import validators
 from django.db import models
-from django.conf import settings
+
 
 User = get_user_model()
 
@@ -18,6 +19,11 @@ class Ingredient(models.Model):
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Ингридиент'
+        verbose_name_plural = 'Ингридиенты'
 
 
 class Tag(models.Model):
@@ -36,6 +42,14 @@ class Tag(models.Model):
         max_length=200,
         unique=True
     )
+
+    class Meta:
+        ordering = ['-id']
+        verbose_name = 'Тег'
+        verbose_name_plural = 'Теги'
+
+    def __str__(self):
+        return self.name
 
 
 class Recipe(models.Model):
@@ -81,8 +95,10 @@ class Recipe(models.Model):
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
         constraints = [
-            models.UniqueConstraint(fields=['author', 'name'],
-                                    name='unique_author_name')
+            models.UniqueConstraint(
+                fields=['author', 'name'],
+                name='unique_author_name'
+            )
         ]
 
     def __str__(self):
@@ -112,13 +128,13 @@ class RecipeIngredient(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Количество ингредиента'
-        verbose_name_plural = 'Количество ингредиентов'
+        verbose_name = 'Кол-во ингридиента'
+        verbose_name_plural = 'Кол-во ингредиентов'
         ordering = ('-id',)
         constraints = [
             models.UniqueConstraint(
                 fields=('recipe', 'ingredient',),
-                name='unique ingredient'
+                name='unique_ingredient'
             )
         ]
 
@@ -138,9 +154,13 @@ class Favorite(models.Model):
     )
 
     class Meta:
+        verbose_name = 'Избранное'
+        verbose_name_plural = 'Избранные'
         constraints = [
-            models.UniqueConstraint(fields=['user', 'recipe'],
-                                    name='unique_favorite_recipes')
+            models.UniqueConstraint(
+                fields=['user', 'recipe'],
+                name='unique_favorite_recipes'
+            )
         ]
 
 
@@ -160,7 +180,11 @@ class Shopping(models.Model):
     )
 
     class Meta:
+        verbose_name = 'Список покупок'
+        verbose_name_plural = 'Списки покупок'
         constraints = [
-            models.UniqueConstraint(fields=['user', 'recipe'],
-                                    name='unique_cart_user_recipes')
+            models.UniqueConstraint(
+                fields=['user', 'recipe'],
+                name='unique_cart_user_recipes'
+            )
         ]

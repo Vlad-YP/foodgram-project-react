@@ -5,11 +5,12 @@ class IsAuthorOrReadOnly(permissions.BasePermission):
 
     def has_permission(self, request, view):
         return (
-            request.method in ['GET', 'retrieve']
+            request.method in ('GET', 'RETRIEVE')
             or request.user.is_authenticated
         )
 
     def has_object_permission(self, request, view, obj):
-        if request.method == 'GET':
-            return True
-        return obj.author == request.user
+        return (
+            request.method == 'GET'
+            or obj.author == request.user
+        )

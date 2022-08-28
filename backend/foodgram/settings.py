@@ -1,4 +1,5 @@
 import os
+
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -7,9 +8,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 SECRET_KEY = os.getenv('SECRET_KEY', default='SUP3R-S3CR3T-K3Y-F0R-MY-PR0J3CT')
 
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', default='*')
+ALLOWED_HOSTS = [os.getenv('ALLOWED_HOSTS', default='*')]
 
 
 INSTALLED_APPS = [
@@ -87,6 +88,7 @@ DATABASES = {
     }
 }
 
+
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -139,7 +141,7 @@ DJOSER = {
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 
-INGREDIENT_AMOUNT_MIN = 1
-INGREDIENT_AMOUNT_ERROR = 'Нужен хотя бы один ингридиент'
+INGREDIENT_AMOUNT_MIN = 0.1
+INGREDIENT_AMOUNT_ERROR = 'Ингредиент не может быть пустым'
 COOKING_TIME_MIN = 1
 COOKING_TIME_ERROR = 'Минимальное время приготовления 1 мин.'

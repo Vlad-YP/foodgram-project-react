@@ -14,7 +14,7 @@ class Ingredient(models.Model):
     )
     measurement_unit = models.CharField(
         'Единица измерения',
-        max_length=200
+        max_length=55
     )
 
     def __str__(self):
@@ -22,14 +22,14 @@ class Ingredient(models.Model):
 
     class Meta:
         ordering = ['-id']
-        verbose_name = 'Ингридиент'
-        verbose_name_plural = 'Ингридиенты'
+        verbose_name = 'Ингредиент'
+        verbose_name_plural = 'Ингредиенты'
 
 
 class Tag(models.Model):
     name = models.CharField(
         'Наименование тега',
-        max_length=200,
+        max_length=55,
         unique=True
     )
     color = models.CharField(
@@ -39,7 +39,7 @@ class Tag(models.Model):
     )
     slug = models.SlugField(
         'Slug',
-        max_length=200,
+        max_length=55,
         unique=True
     )
 
@@ -94,12 +94,6 @@ class Recipe(models.Model):
         ordering = ['-id']
         verbose_name = 'Рецепт'
         verbose_name_plural = 'Рецепты'
-        constraints = [
-            models.UniqueConstraint(
-                fields=['author', 'name'],
-                name='unique_author_name'
-            )
-        ]
 
     def __str__(self):
         return self.name
@@ -116,8 +110,7 @@ class RecipeIngredient(models.Model):
         on_delete=models.CASCADE,
         related_name='ingredient'
     )
-    amount = models.PositiveSmallIntegerField(
-        default=1,
+    amount = models.FloatField(
         validators=(
             validators.MinValueValidator(
                 settings.INGREDIENT_AMOUNT_MIN,

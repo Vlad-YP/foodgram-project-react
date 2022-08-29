@@ -1,4 +1,5 @@
 import csv
+import logging
 import os
 
 from django.conf import settings
@@ -7,6 +8,8 @@ from django.core.management.base import BaseCommand
 from recipes.models import Ingredient
 
 DATA_ROOT = os.path.join(settings.BASE_DIR, 'data')
+
+logger = logging.getLogger(__name__)
 
 
 class Command(BaseCommand):
@@ -28,4 +31,4 @@ class Command(BaseCommand):
                         measurement_unit=measurement_unit
                     )
         except Exception as error:
-            print(error)
+            logger.error(error)

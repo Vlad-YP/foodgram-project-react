@@ -122,7 +122,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return super().get_permissions()
 
     @staticmethod
-    def add_object_action(request, pk, serializer_in_view):
+    def __add_object_action(request, pk, serializer_in_view):
         data = {'user': request.user.id, 'recipe': pk}
         serializer = serializer_in_view(
             data=data,
@@ -133,7 +133,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     @staticmethod
-    def del_object_action(request, pk, serializer_in_view, model):
+    def __del_object_action(request, pk, serializer_in_view, model):
         data = {'user': request.user.id, 'recipe': pk}
         serializer = serializer_in_view(
             data=data,
@@ -154,11 +154,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=('POST',),)
     def favorite(self, request, pk):
-        return self.add_object_action(request, pk, FavoriteSerializer)
+        return self.__add_object_action(request, pk, FavoriteSerializer)
 
     @favorite.mapping.delete
     def delete_favorite(self, request, pk):
-        return self.del_object_action(
+        return self.__del_object_action(
             request,
             pk,
             FavoriteSerializer,
@@ -168,11 +168,11 @@ class RecipeViewSet(viewsets.ModelViewSet):
     @action(detail=True, methods=('POST',),)
     def shopping_cart(self, request, pk):
         if self.request.method == 'POST':
-            return self.add_object_action(request, pk, CartSerializer)
+            return self.__add_object_action(request, pk, CartSerializer)
 
     @shopping_cart.mapping.delete
     def delete_shopping_cart(self, request, pk):
-        return self.del_object_action(
+        return self.__del_object_action(
             request,
             pk,
             CartSerializer,

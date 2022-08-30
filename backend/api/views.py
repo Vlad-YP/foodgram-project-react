@@ -17,8 +17,7 @@ from .serializers import (
     CartSerializer, FavoriteSerializer,
     IngredientSerializer, RecipeGetSerializer,
     RecipeSerializer, SubscriptionListSerializer,
-    SubscriptionSerializer, TagSerializer
-)
+    SubscriptionSerializer, TagSerializer)
 from .utils import create_shopping_cart
 
 User = get_user_model()

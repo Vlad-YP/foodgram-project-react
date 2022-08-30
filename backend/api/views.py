@@ -7,10 +7,7 @@ from rest_framework.generics import get_object_or_404
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from recipes.models import (
-    Favorite, Ingredient, Recipe,
-    Shopping, Tag
-)
+from recipes.models import Favorite, Ingredient, Recipe, Shopping, Tag
 from users.models import SubscribeAuthor
 from .filters import IngredientFilter, RecipeFilter
 from .mixins import ListRetrieveViewSet

@@ -5,10 +5,8 @@ from drf_base64.fields import Base64ImageField
 from rest_framework import serializers
 from rest_framework.validators import UniqueTogetherValidator
 
-from recipes.models import (
-    Favorite, Ingredient, Recipe, RecipeIngredient,
-    Shopping, Tag
-)
+from recipes.models import (Favorite, Ingredient, Recipe, RecipeIngredient,
+                            Shopping, Tag)
 from users.models import SubscribeAuthor, User
 
 

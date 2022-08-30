@@ -13,11 +13,10 @@ from .filters import IngredientFilter, RecipeFilter
 from .mixins import ListRetrieveViewSet
 from .pagination import CustomPagination
 from .permissions import IsAuthorOrReadOnly
-from .serializers import (
-    CartSerializer, FavoriteSerializer,
-    IngredientSerializer, RecipeGetSerializer,
-    RecipeSerializer, SubscriptionListSerializer,
-    SubscriptionSerializer, TagSerializer)
+from .serializers import (CartSerializer, FavoriteSerializer,
+                          IngredientSerializer, RecipeGetSerializer,
+                          RecipeSerializer, SubscriptionListSerializer,
+                          SubscriptionSerializer, TagSerializer)
 from .utils import create_shopping_cart
 
 User = get_user_model()

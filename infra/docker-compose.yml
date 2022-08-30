@@ -10,7 +10,7 @@ services:
       - ./.env
 
   backend:
-    image: vladyyp/infra_backend:latest
+    image: vladyyp/foodgram_backend:latest
     restart: always
     volumes:
       - static_value:/app/backend_static/
@@ -21,7 +21,7 @@ services:
       - ./.env
 
   frontend:
-    image: vladyyp/infra_frontend:latest
+    image: vladyyp/foodgram_frontend:latest
     volumes:
       - ../frontend/:/app/result_build/
   

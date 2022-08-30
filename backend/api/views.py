@@ -13,10 +13,12 @@ from .filters import IngredientFilter, RecipeFilter
 from .mixins import ListRetrieveViewSet
 from .pagination import CustomPagination
 from .permissions import IsAuthorOrReadOnly
-from .serializers import (CartSerializer, FavoriteSerializer,
-                          IngredientSerializer, RecipeGetSerializer,
-                          RecipeSerializer, SubscriptionListSerializer,
-                          SubscriptionSerializer, TagSerializer)
+from .serializers import (
+    CartSerializer, FavoriteSerializer,
+    IngredientSerializer, RecipeGetSerializer,
+    RecipeSerializer, SubscriptionListSerializer,
+    SubscriptionSerializer, TagSerializer
+)
 from .utils import create_shopping_cart
 
 User = get_user_model()
@@ -44,12 +46,12 @@ class UserViewSet(UserViewSet):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
 
         serializer = SubscriptionSerializer(
-                data={
-                    'user': request.user.id,
-                    'author': get_object_or_404(User, id=id).id
-                },
-                context={'request': request}
-            )
+            data={
+                'user': request.user.id,
+                'author': get_object_or_404(User, id=id).id
+            },
+            context={'request': request}
+        )
         serializer.is_valid(raise_exception=True)
         subscription = get_object_or_404(
             SubscribeAuthor,
@@ -162,8 +164,7 @@ class RecipeViewSet(viewsets.ModelViewSet):
 
     @action(detail=True, methods=('POST',),)
     def shopping_cart(self, request, pk):
-        if self.request.method == 'POST':
-            return self.__add_object_action(request, pk, CartSerializer)
+        return self.__add_object_action(request, pk, CartSerializer)
 
     @shopping_cart.mapping.delete
     def delete_shopping_cart(self, request, pk):

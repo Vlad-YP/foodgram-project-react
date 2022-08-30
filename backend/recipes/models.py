@@ -121,7 +121,7 @@ class RecipeIngredient(models.Model):
     )
 
     class Meta:
-        verbose_name = 'Кол-во ингридиента'
+        verbose_name = 'Кол-во ингредиента'
         verbose_name_plural = 'Кол-во ингредиентов'
         ordering = ('-id',)
         constraints = [

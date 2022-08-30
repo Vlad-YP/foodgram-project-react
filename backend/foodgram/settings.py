@@ -73,7 +73,6 @@ REST_FRAMEWORK = {
 
 }
 
-
 WSGI_APPLICATION = 'foodgram.wsgi.application'
 
 DATABASES = {

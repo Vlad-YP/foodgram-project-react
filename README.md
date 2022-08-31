@@ -1,3 +1,5 @@
+![example workflow](https://github.com/Vlad-YP/foodgram-project-reactactions/workflows/yamdb_workflow.yml/badge.svg)
+
 # Foodgram - «Продуктовый помощник»
 
 На этом сервисе пользователи могут публиковать рецепты, подписываться на публикации других пользователей, добавлять понравившиеся рецепты в список «Избранное», а перед походом в магазин скачивать сводный список продуктов, необходимых для приготовления одного или нескольких выбранных блюд.
@@ -51,6 +53,12 @@ docker-compose exec backend python manage.py add_ingredients
 ```
 
 файл с данными лежит в /backend/data/
+
+## CI и CD
+- Тестирование на flake8
+- Отправка образа foodgram_backend на https://hub.docker.com/
+- Деплой на сервер с подготовкой проекта(создание env, выполнение manage-команд)
+- Отправка сообщения в телеграм
 
 ## Примеры запросов:
 К проекту подключен модуль redoc, содержащий документацию по доступным эндпоинтам и примерам запросов. Адрес для redoc - [base]/redoc/.
@@ -337,3 +345,9 @@ docker-compose exec backend python manage.py add_ingredients
 ```
 /api/recipes/{id}/favorite/
 ```
+
+
+## Авторы
+
+- Команда Яндекс.Практикум
+- Владислав Максимов(студент)
